@@ -1,0 +1,5 @@
+---
+interface Props { fine?: boolean; class?: string }
+const { fine = false, class: cls = '' } = Astro.props;
+---
+<div class:list={['frise', { 'frise-fine': fine }, cls]} role="presentation"></div>

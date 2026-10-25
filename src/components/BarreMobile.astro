@@ -1,0 +1,7 @@
+---
+import infos from '../data/infos.json';
+---
+<div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-[1.4fr_1fr] gap-2 border-t-2 border-cobalt bg-chaux px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] md:hidden">
+  <a href={`tel:${infos.telephoneLien}`} class="btn btn-plein !min-h-[52px] !px-2 !text-base">Appeler le {infos.telephone}</a>
+  <a href={infos.itineraire} class="btn btn-ligne !min-h-[52px] !px-2 !text-base bg-glacure" target="_blank" rel="noopener">Itinéraire</a>
+</div>

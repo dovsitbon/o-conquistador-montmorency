@@ -1,0 +1,38 @@
+---
+import infos from '../data/infos.json';
+import Frise from './Frise.astro';
+const annee = new Date().getFullYear();
+---
+<footer class="bg-cobalt text-glacure">
+  <Frise fine class="!border-cobalt" />
+  <div class="mx-auto grid max-w-[1320px] gap-10 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr] lg:px-10">
+    <div>
+      <p class="titre text-4xl sm:text-5xl">O Conquistador</p>
+      <p class="mt-3 max-w-[36ch] text-lg">Cuisine portugaise à la braise, à Montmorency.</p>
+      <p class="titre mt-6 text-2xl text-[#C9D4F2]">« Olé Olé, ça se passe au Conquistador »</p>
+    </div>
+    <div>
+      <h2 class="font-sans text-base font-bold not-italic tracking-normal">Adresse et téléphone</h2>
+      <p class="mt-3">{infos.nom}</p>
+      <p>
+        <span>{infos.adresse.rue}</span><br />
+        <span>{infos.adresse.codePostal}</span> <span>{infos.adresse.ville}</span>
+      </p>
+      <p class="mt-2"><a class="lien inline-flex min-h-[44px] items-center text-lg font-semibold" href={`tel:${infos.telephoneLien}`}>{infos.telephone}</a></p>
+      <p class="text-[0.98rem] text-[#DCE3F7]">Midi : du mardi au samedi, 11h30 à 14h00.<br />Soir : vendredi et samedi, 19h30 à 21h30.</p>
+    </div>
+    <div>
+      <h2 class="font-sans text-base font-bold not-italic tracking-normal">Nous suivre</h2>
+      <ul class="mt-2">
+        <li><a class="lien inline-flex min-h-[44px] items-center" href={infos.reseaux.facebook} target="_blank" rel="noopener">Facebook : {infos.reseaux.facebookNom}</a></li>
+        <li><a class="lien inline-flex min-h-[44px] items-center" href={infos.reseaux.instagram} target="_blank" rel="noopener">Instagram : {infos.reseaux.instagramNom}</a></li>
+      </ul>
+      <ul class="mt-6 text-[0.95rem] text-[#DCE3F7]">
+        <li><a class="lien inline-flex min-h-[44px] items-center" href="/carte/">La carte</a></li>
+        <li><a class="lien inline-flex min-h-[44px] items-center" href="/mentions-legales/">Mentions légales</a></li>
+        <li><a class="lien inline-flex min-h-[44px] items-center" href="/confidentialite/">Politique de confidentialité</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="mx-auto max-w-[1320px] border-t border-[#C9D4F2]/30 px-4 py-5 text-sm text-[#DCE3F7] sm:px-6 lg:px-10">© {annee} O Conquistador, Montmorency. Motif azulejo dessiné pour le restaurant.</p>
+</footer>

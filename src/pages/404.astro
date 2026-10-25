@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import infos from '../data/infos.json';
+---
+<Base title="Page introuvable | O Conquistador" description="Cette page n’existe pas sur le site d’O Conquistador, restaurant portugais à Montmorency." noindex>
+  <section class="mx-auto max-w-[760px] px-4 py-20 sm:px-6">
+    <h1 class="text-[clamp(2.6rem,7vw,4.5rem)] text-cobalt">Cette page n’existe pas</h1>
+    <p class="mt-6 text-[1.15rem]">Le lien est peut-être ancien. La carte, les horaires et l’adresse sont sur la page d’accueil.</p>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/" class="btn btn-plein">Retour à l’accueil</a>
+      <a href={`tel:${infos.telephoneLien}`} class="btn btn-ligne">Appeler le {infos.telephone}</a>
+    </div>
+  </section>
+</Base>

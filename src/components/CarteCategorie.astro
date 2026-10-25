@@ -1,0 +1,30 @@
+---
+interface Plat { nom: string; detail: string | null; prix: string | null }
+interface Props { titre: string; intro?: string; plats: Plat[]; id?: string }
+const { titre, intro, plats, id } = Astro.props;
+const marqueur = /\[À CONFIRMER\]/;
+const decoupe = (t: string) => t.split(marqueur);
+---
+<section class="categorie" id={id} aria-labelledby={id ? `${id}-titre` : undefined}>
+  <h3 id={id ? `${id}-titre` : undefined} class="cartouche inline-block bg-cobalt px-4 py-2 text-[1.7rem] text-glacure sm:text-[2rem]">{titre}</h3>
+  {intro && <p class="mt-3 max-w-[48ch] text-encre/85">{intro}</p>}
+  <ul class="mt-4 border-t-2 border-cobalt">
+    {plats.map((p) => (
+      <li class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-cobalt/25 py-3">
+        <span class="min-w-0">
+          <span class="block text-[1.15rem] font-semibold">{p.nom}</span>
+          {p.detail && (
+            <span class="block text-[0.95rem] text-encre/80">
+              {decoupe(p.detail).map((morceau, i, arr) => (
+                <>{morceau}{i < arr.length - 1 && <span class="a-confirmer">[À CONFIRMER]</span>}</>
+              ))}
+            </span>
+          )}
+        </span>
+        <span class="shrink-0 text-[0.95rem] font-semibold tabular-nums">
+          {p.prix ? p.prix : <>prix <span class="a-confirmer">[À CONFIRMER]</span></>}
+        </span>
+      </li>
+    ))}
+  </ul>
+</section>

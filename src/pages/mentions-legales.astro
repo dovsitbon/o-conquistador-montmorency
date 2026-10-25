@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import infos from '../data/infos.json';
+---
+<Base title="Mentions légales | O Conquistador Montmorency" description="Mentions légales du site du restaurant O Conquistador, 93 avenue de Domont, 95160 Montmorency : éditeur, hébergeur, propriété intellectuelle.">
+  <article class="legal mx-auto max-w-[760px] px-4 py-14 sm:px-6 lg:py-20">
+    <h1 class="text-[clamp(2.6rem,7vw,4.5rem)] text-cobalt">Mentions légales</h1>
+    <h2>Éditeur du site</h2>
+    <p>
+      {infos.nom}<br />
+      {infos.adresse.rue}, {infos.adresse.codePostal} {infos.adresse.ville}<br />
+      Téléphone : <a class="lien" href={`tel:${infos.telephoneLien}`}>{infos.telephone}</a>
+    </p>
+    <p>
+      Raison sociale et forme juridique : <span class="a-confirmer">[À CONFIRMER]</span><br />
+      SIRET : <span class="a-confirmer">[À CONFIRMER]</span><br />
+      Numéro de TVA intracommunautaire : <span class="a-confirmer">[À CONFIRMER]</span><br />
+      Directeur de la publication : <span class="a-confirmer">[À CONFIRMER]</span><br />
+      Adresse e-mail de contact : <span class="a-confirmer">[À CONFIRMER]</span>
+    </p>
+    <h2>Hébergeur</h2>
+    <p>Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723, États-Unis. Site : <a class="lien" href="https://vercel.com" rel="noopener">vercel.com</a></p>
+    <h2>Propriété intellectuelle</h2>
+    <p>Les textes, le motif azulejo et la mise en page de ce site appartiennent à {infos.nom}. Toute reproduction sans autorisation est interdite. Les avis cités sont des extraits d’avis publiés sur Google.</p>
+    <h2>Responsabilité</h2>
+    <p>Les horaires, plats et prix sont donnés à titre indicatif et peuvent changer. En cas de doute, appelez le restaurant au {infos.telephone}.</p>
+  </article>
+</Base>

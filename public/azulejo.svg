@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Carreau azulejo original « O Conquistador » : rosace à 8 pétales, quarts de rosaces aux coins
+       et demi-motifs aux bords, qui se recomposent quand les carreaux se touchent. -->
+  <defs>
+    <filter id="pinceau" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="2" seed="7" stitchTiles="stitch" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <path id="petale" d="M60 60 C51 51 51 41 60 32 C69 41 69 51 60 60 Z"/>
+    <path id="petale-court" d="M60 60 C55 55 55 48 60 42 C65 48 65 55 60 60 Z"/>
+    <path id="feuille" d="M60 3 C65 9 65 16 60 22 C55 16 55 9 60 3 Z"/>
+    <path id="larme" d="M0 0 C-5 -6 -4.5 -12.5 0 -16 C4.5 -12.5 5 -6 0 0 Z"/>
+    <path id="p-coin" d="M0 -11 C4.5 -15 4.5 -21 0 -26 C-4.5 -21 -4.5 -15 0 -11 Z"/>
+    <g id="coin">
+      <use href="#p-coin" fill="#1F3D99" transform="rotate(0)"/>
+      <use href="#p-coin" fill="#6F86C9" transform="rotate(45)"/>
+      <use href="#p-coin" fill="#1F3D99" transform="rotate(90)"/>
+      <use href="#p-coin" fill="#6F86C9" transform="rotate(135)"/>
+      <use href="#p-coin" fill="#1F3D99" transform="rotate(180)"/>
+      <use href="#p-coin" fill="#6F86C9" transform="rotate(225)"/>
+      <use href="#p-coin" fill="#1F3D99" transform="rotate(270)"/>
+      <use href="#p-coin" fill="#6F86C9" transform="rotate(315)"/>
+      <circle r="9" fill="#1F3D99"/>
+      <circle r="5" fill="#F7F8F4"/>
+      <circle r="2.2" fill="#1F3D99"/>
+    </g>
+    <g id="bord">
+      <circle r="10" fill="#6F86C9"/>
+      <circle r="5" fill="#F7F8F4"/>
+      <circle r="2" fill="#1F3D99"/>
+    </g>
+  </defs>
+  <rect width="120" height="120" fill="#F7F8F4"/>
+  <g filter="url(#pinceau)">
+    <use href="#coin" x="0" y="0"/>
+    <use href="#coin" x="120" y="0"/>
+    <use href="#coin" x="0" y="120"/>
+    <use href="#coin" x="120" y="120"/>
+    <use href="#bord" x="60" y="0"/>
+    <use href="#bord" x="0" y="60"/>
+    <use href="#bord" x="120" y="60"/>
+    <use href="#bord" x="60" y="120"/>
+    <g fill="#1F3D99">
+      <use href="#feuille" transform="translate(0 8)"/>
+      <use href="#feuille" transform="rotate(90 60 60) translate(0 8)"/>
+      <use href="#feuille" transform="rotate(180 60 60) translate(0 8)"/>
+      <use href="#feuille" transform="rotate(270 60 60) translate(0 8)"/>
+    </g>
+    <g fill="#1F3D99">
+      <use href="#larme" transform="translate(84 84) rotate(135)"/>
+      <use href="#larme" transform="translate(36 84) rotate(225)"/>
+      <use href="#larme" transform="translate(36 36) rotate(315)"/>
+      <use href="#larme" transform="translate(84 36) rotate(45)"/>
+    </g>
+    <circle cx="60" cy="60" r="29" fill="none" stroke="#1F3D99" stroke-width="2.6"/>
+    <circle cx="60" cy="60" r="25.5" fill="none" stroke="#6F86C9" stroke-width="1.2"/>
+    <g fill="#6F86C9">
+      <use href="#petale-court" transform="rotate(45 60 60)"/>
+      <use href="#petale-court" transform="rotate(135 60 60)"/>
+      <use href="#petale-court" transform="rotate(225 60 60)"/>
+      <use href="#petale-court" transform="rotate(315 60 60)"/>
+    </g>
+    <g fill="#1F3D99">
+      <use href="#petale"/>
+      <use href="#petale" transform="rotate(90 60 60)"/>
+      <use href="#petale" transform="rotate(180 60 60)"/>
+      <use href="#petale" transform="rotate(270 60 60)"/>
+    </g>
+    <circle cx="60" cy="60" r="6" fill="#F7F8F4"/>
+    <circle cx="60" cy="60" r="3" fill="#E8641F"/>
+  </g>
+</svg>

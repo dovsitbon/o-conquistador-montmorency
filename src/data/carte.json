@@ -1,0 +1,70 @@
+{
+  "_aide": "Modifiez ici les plats et les prix. prix : null affiche « prix [À CONFIRMER] ». Exemple de prix : \"18,50 €\".",
+  "miseAJour": null,
+  "categories": [
+    {
+      "id": "entrees",
+      "titre": "Entrées",
+      "plats": [
+        { "nom": "Entrées du jour", "detail": "Liste des entrées [À CONFIRMER]", "prix": null }
+      ]
+    },
+    {
+      "id": "viandes",
+      "titre": "Viandes à la braise",
+      "intro": "Viandes premium, saisies sur la braise.",
+      "plats": [
+        { "nom": "Viandes premium à la braise", "detail": "Pièces, grammages et cuissons proposés [À CONFIRMER]", "prix": null }
+      ]
+    },
+    {
+      "id": "poissons",
+      "titre": "Poissons",
+      "plats": [
+        { "nom": "Dorade grillée", "detail": null, "prix": null },
+        { "nom": "Morue", "detail": "Préparation [À CONFIRMER]", "prix": null }
+      ]
+    },
+    {
+      "id": "specialites",
+      "titre": "Spécialités portugaises",
+      "plats": [
+        { "nom": "Spécialités de la maison", "detail": "Liste des spécialités [À CONFIRMER]", "prix": null }
+      ]
+    },
+    {
+      "id": "accompagnements",
+      "titre": "Accompagnements maison",
+      "intro": "Servis avec les viandes et les poissons.",
+      "plats": [
+        { "nom": "Frites maison", "detail": null, "prix": null },
+        { "nom": "Riz", "detail": null, "prix": null },
+        { "nom": "Haricots noirs", "detail": null, "prix": null },
+        { "nom": "Champignons", "detail": null, "prix": null }
+      ]
+    },
+    {
+      "id": "enfant",
+      "titre": "Menu enfant",
+      "intro": "Certains plats peuvent être adaptés pour les tout-petits : demandez en salle.",
+      "plats": [
+        { "nom": "Menu enfant", "detail": "Composition [À CONFIRMER]", "prix": null }
+      ]
+    },
+    {
+      "id": "desserts",
+      "titre": "Desserts maison",
+      "plats": [
+        { "nom": "Flan maison", "detail": null, "prix": null },
+        { "nom": "Autres desserts maison", "detail": "Liste [À CONFIRMER]", "prix": null }
+      ]
+    },
+    {
+      "id": "vins",
+      "titre": "Vins portugais",
+      "plats": [
+        { "nom": "Sélection de vins portugais", "detail": "Références, au verre et à la bouteille [À CONFIRMER]", "prix": null }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import infos from '../data/infos.json';
+---
+<Base title="Politique de confidentialité | O Conquistador Montmorency" description="Confidentialité du site d’O Conquistador : aucun cookie, aucun formulaire, plan Google Maps chargé seulement si vous le demandez.">
+  <article class="legal mx-auto max-w-[760px] px-4 py-14 sm:px-6 lg:py-20">
+    <h1 class="text-[clamp(2.6rem,7vw,4.5rem)] text-cobalt">Politique de confidentialité</h1>
+    <h2>Ce que le site collecte</h2>
+    <p>Rien. Ce site n’a ni formulaire, ni compte client, ni outil de mesure d’audience, ni publicité. Il ne dépose aucun cookie. Les réservations se font par téléphone.</p>
+    <h2>Plan Google Maps</h2>
+    <p>Le plan n’est chargé que si vous cliquez sur « Afficher le plan ». Google peut alors déposer des cookies et recevoir votre adresse IP, selon sa propre <a class="lien" href="https://policies.google.com/privacy?hl=fr" rel="noopener">politique de confidentialité</a>. Le lien « Itinéraire » ouvre Google Maps dans un nouvel onglet.</p>
+    <h2>Liens vers Facebook et Instagram</h2>
+    <p>Les liens vers nos pages Facebook et Instagram vous mènent sur ces services, qui appliquent leurs propres règles.</p>
+    <h2>Hébergement</h2>
+    <p>Le site est hébergé par Vercel Inc., qui peut enregistrer des journaux techniques (adresse IP, date de la visite) pour assurer la sécurité et le bon fonctionnement du service.</p>
+    <h2>Vos droits</h2>
+    <p>Pour toute question sur vos données, contactez {infos.nom} au {infos.telephone} ou par courrier au {infos.adresse.rue}, {infos.adresse.codePostal} {infos.adresse.ville}. Vous pouvez aussi vous adresser à la CNIL (cnil.fr).</p>
+  </article>
+</Base>

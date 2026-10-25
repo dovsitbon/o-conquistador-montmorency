@@ -1,0 +1,18 @@
+# O Conquistador
+
+> Restaurant portugais à Montmorency (Val-d'Oise, 95160) : grillades à la braise, viandes premium, poissons (dorade grillée, morue), spécialités portugaises, frites et desserts maison (flan maison).
+
+- Adresse : 93 avenue de Domont, 95160 Montmorency
+- Téléphone : 01 34 28 60 37 (réservation recommandée le soir)
+- Horaires : mardi, mercredi, jeudi 11h30-14h00 ; vendredi et samedi 11h30-14h00 et 19h30-21h30 ; fermé dimanche et lundi
+- Fermeture annuelle l'été (en 2024 : du 31 juillet au 2 septembre)
+- Services : salle, terrasse aménagée, bar, traiteur, livraison, menu enfant, chaises hautes, accessible en fauteuil roulant, stationnement gratuit dans la rue
+- Paiement : carte bancaire, sans contact
+- Avis : 4,6/5 sur Google (environ 490 avis), 100 % recommandé sur Facebook (environ 300 avis), 4,2/5 sur TripAdvisor (66 avis)
+
+## Pages
+
+- [Accueil](https://o-conquistador-montmorency.vercel.app/) : la braise, la maison, avis, groupes et traiteur, infos pratiques, questions fréquentes
+- [La carte](https://o-conquistador-montmorency.vercel.app/carte/) : catégories et plats
+- [Mentions légales](https://o-conquistador-montmorency.vercel.app/mentions-legales/)
+- [Confidentialité](https://o-conquistador-montmorency.vercel.app/confidentialite/)

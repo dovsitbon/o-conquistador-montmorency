@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+import Frise from '../components/Frise.astro';
+import CarteCategorie from '../components/CarteCategorie.astro';
+import carte from '../data/carte.json';
+import infos from '../data/infos.json';
+
+const menuLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Menu',
+  name: 'La carte d’O Conquistador',
+  inLanguage: 'fr',
+  hasMenuSection: carte.categories.map((c) => ({
+    '@type': 'MenuSection',
+    name: c.titre,
+    hasMenuItem: c.plats
+      .filter((p) => !p.detail?.includes('Liste'))
+      .map((p) => ({ '@type': 'MenuItem', name: p.nom })),
+  })),
+};
+---
+<Base
+  title="La carte | O Conquistador, restaurant portugais à Montmorency"
+  description="Carte d’O Conquistador, Montmorency : viandes premium à la braise, dorade grillée, morue, frites maison, flan maison, vins portugais, menu enfant."
+  jsonLd={[menuLd]}
+>
+  <section class="mx-auto max-w-[1320px] px-4 pb-12 pt-10 sm:px-6 lg:px-10 lg:pt-16">
+    <nav aria-label="Fil d’Ariane" class="text-[1.02rem]">
+      <a href="/" class="lien inline-flex min-h-[44px] items-center">Accueil</a> <span aria-hidden="true">/</span> <span aria-current="page">La carte</span>
+    </nav>
+    <h1 class="mt-3 text-[clamp(3.2rem,10vw,8rem)] leading-[0.95] text-cobalt">La carte</h1>
+    <p class="mt-6 max-w-[58ch] text-[1.15rem]">
+      Tout ce qui passe par la braise, les poissons, les accompagnements et les desserts maison.
+      Les prix et le détail des plats sont en cours de mise à jour <span class="a-confirmer">[À CONFIRMER]</span>.
+      Une question sur un plat, une adaptation pour un enfant : <a class="lien font-semibold text-cobalt" href={`tel:${infos.telephoneLien}`}>{infos.telephone}</a>.
+    </p>
+    <nav aria-label="Catégories de la carte" class="mt-8">
+      <ul class="flex flex-wrap gap-2">
+        {carte.categories.map((c) => (
+          <li><a href={`#${c.id}`} class="inline-flex min-h-[44px] items-center border-2 border-cobalt px-3 font-semibold text-cobalt no-underline hover:bg-cobalt hover:text-glacure">{c.titre}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </section>
+  <Frise fine />
+  <section class="mx-auto max-w-[1320px] px-4 py-16 sm:px-6 lg:px-10 lg:py-24" aria-labelledby="plats-titre">
+    <h2 id="plats-titre" class="sr-only">Plats par catégorie</h2>
+    <div class="grid gap-x-16 gap-y-16 md:grid-cols-2">
+      {carte.categories.map((c) => <CarteCategorie id={c.id} titre={c.titre} intro={c.intro} plats={c.plats} />)}
+    </div>
+    <div class="mt-20 border-[3px] border-cobalt bg-glacure p-6 sm:p-8 md:flex md:items-center md:justify-between md:gap-8">
+      <p class="titre text-[1.9rem] text-cobalt">Le soir, on réserve.</p>
+      <div class="mt-4 md:mt-0">
+        <p class="mb-3 text-[1.02rem]">Vendredi et samedi, de 19h30 à 21h30.</p>
+        <a href={`tel:${infos.telephoneLien}`} class="btn btn-plein">Réserver au {infos.telephone}</a>
+      </div>
+    </div>
+  </section>
+</Base>

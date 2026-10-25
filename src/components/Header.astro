@@ -1,0 +1,52 @@
+---
+import infos from '../data/infos.json';
+const liens = [
+  { href: '/#braise', label: 'La braise' },
+  { href: '/carte/', label: 'La carte' },
+  { href: '/#maison', label: 'La maison' },
+  { href: '/#avis', label: 'Avis' },
+  { href: '/#groupes', label: 'Groupes & traiteur' },
+  { href: '/#infos', label: 'Infos pratiques' },
+];
+---
+<header class="sticky top-0 z-40 border-b-2 border-cobalt bg-chaux/95 backdrop-blur-[2px]">
+  <div class="mx-auto flex max-w-[1320px] items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-10">
+    <a href="/" class="titre flex min-h-[48px] items-center gap-2.5 text-[1.45rem] text-cobalt no-underline" aria-label="O Conquistador, retour à l’accueil">
+      <img src="/azulejo.svg" alt="" width="34" height="34" class="h-[34px] w-[34px] border border-cobalt" />
+      O Conquistador
+    </a>
+    <nav aria-label="Navigation principale" class="hidden lg:block">
+      <ul class="flex items-center gap-1">
+        {liens.map((l) => (
+          <li><a href={l.href} class="inline-flex min-h-[44px] items-center px-2.5 text-[0.98rem] font-medium no-underline hover:text-cobalt hover:underline hover:underline-offset-4">{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href={`tel:${infos.telephoneLien}`} class="btn btn-plein hidden !min-h-[44px] !px-4 !py-2 md:inline-flex">
+        Réserver : {infos.telephone}
+      </a>
+      <details class="menu relative lg:hidden">
+        <summary class="flex min-h-[48px] min-w-[48px] cursor-pointer list-none items-center justify-center border-2 border-cobalt px-3 font-semibold text-cobalt">
+          Menu
+        </summary>
+        <nav aria-label="Navigation mobile" class="absolute right-0 top-[calc(100%+10px)] w-[min(86vw,300px)] border-2 border-cobalt bg-glacure p-2 shadow-[6px_6px_0_var(--color-cobalt)]">
+          <ul>
+            {liens.map((l) => (
+              <li><a href={l.href} class="flex min-h-[48px] items-center border-b border-cobalt/15 px-3 text-lg no-underline last:border-0 hover:bg-cobalt hover:text-glacure">{l.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+<script>
+  // Ferme le menu mobile après un clic sur un lien
+  document.querySelectorAll('details.menu a').forEach((a) =>
+    a.addEventListener('click', () => a.closest('details')?.removeAttribute('open')),
+  );
+</script>
+<style>
+  details.menu summary::-webkit-details-marker { display: none; }
+</style>

@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+import infos from '../data/infos.json';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BarreMobile from '../components/BarreMobile.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  jsonLd?: object[];
+  noindex?: boolean;
+}
+const { title, description, jsonLd = [], noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og.png', Astro.site).href;
+const site = Astro.site!.href.replace(/\/$/, '');
+
+const jours = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const restaurant = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  '@id': `${site}/#restaurant`,
+  name: infos.nom,
+  description: 'Restaurant portugais à Montmorency : grillades à la braise, viandes premium, poissons (dorade, morue), frites et desserts maison.',
+  url: `${site}/`,
+  image: ogImage,
+  telephone: infos.telephoneInternational,
+  servesCuisine: 'Portuguese',
+  acceptsReservations: true,
+  hasMenu: `${site}/carte/`,
+  paymentAccepted: infos.paiements.join(', '),
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: infos.adresse.rue,
+    postalCode: infos.adresse.codePostal,
+    addressLocality: infos.adresse.ville,
+    addressRegion: 'Val-d’Oise',
+    addressCountry: infos.adresse.pays,
+  },
+  ...(infos.geo ? { geo: { '@type': 'GeoCoordinates', ...(infos.geo as object) } } : {}),
+  areaServed: ['Montmorency', ...infos.communesVoisines],
+  openingHoursSpecification: infos.horaires.flatMap((j) =>
+    j.services.map(([opens, closes]) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: `https://schema.org/${jours[j.dow]}`,
+      opens,
+      closes,
+    })),
+  ),
+  amenityFeature: [
+    { '@type': 'LocationFeatureSpecification', name: 'Terrasse', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Accessible en fauteuil roulant', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Chaises hautes', value: true },
+    { '@type': 'LocationFeatureSpecification', name: 'Stationnement gratuit dans la rue', value: true },
+  ],
+  sameAs: [infos.reseaux.facebook, infos.reseaux.instagram],
+};
+const schemas = [restaurant, ...jsonLd];
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta name="theme-color" content="#F3F4EF" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={infos.nom} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="O Conquistador, cuisine portugaise à la braise, 93 avenue de Domont à Montmorency" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    {schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body class="pb-[76px] md:pb-0">
+    <a href="#contenu" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-glacure focus:px-4 focus:py-3 focus:text-cobalt">Aller au contenu</a>
+    <Header />
+    <main id="contenu">
+      <slot />
+    </main>
+    <Footer />
+    <BarreMobile />
+    <script>
+      import '../scripts/statut.ts';
+    </script>
+  </body>
+</html>

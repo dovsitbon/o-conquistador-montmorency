@@ -1,0 +1,55 @@
+{
+  "nom": "O Conquistador",
+  "accroche": "Cuisine portugaise à la braise, à Montmorency",
+  "telephone": "01 34 28 60 37",
+  "telephoneLien": "+33134286037",
+  "telephoneInternational": "+33 1 34 28 60 37",
+  "adresse": {
+    "rue": "93 avenue de Domont",
+    "codePostal": "95160",
+    "ville": "Montmorency",
+    "pays": "FR"
+  },
+  "geo": null,
+  "itineraire": "https://www.google.com/maps/dir/?api=1&destination=93%20avenue%20de%20Domont%2095160%20Montmorency",
+  "carteIframe": "https://www.google.com/maps?q=93%20avenue%20de%20Domont%2C%2095160%20Montmorency&output=embed",
+  "horaires": [
+    { "jour": "Lundi", "dow": 1, "services": [] },
+    { "jour": "Mardi", "dow": 2, "services": [["11:30", "14:00"]] },
+    { "jour": "Mercredi", "dow": 3, "services": [["11:30", "14:00"]] },
+    { "jour": "Jeudi", "dow": 4, "services": [["11:30", "14:00"]] },
+    { "jour": "Vendredi", "dow": 5, "services": [["11:30", "14:00"], ["19:30", "21:30"]] },
+    { "jour": "Samedi", "dow": 6, "services": [["11:30", "14:00"], ["19:30", "21:30"]] },
+    { "jour": "Dimanche", "dow": 0, "services": [] }
+  ],
+  "conges": {
+    "_aide": "Renseignez debut et fin au format AAAA-MM-JJ. Pendant cette période, le statut affiche « Fermé pour congés ». Laissez null si les dates ne sont pas connues.",
+    "debut": null,
+    "fin": null,
+    "texte": "Le restaurant ferme chaque été pour les congés annuels.",
+    "rappel": "En 2024 : du 31 juillet au 2 septembre.",
+    "datesAnneeEnCours": "Dates de l’été prochain [À CONFIRMER]"
+  },
+  "services": [
+    "Salle et terrasse aménagée",
+    "Bar",
+    "Traiteur",
+    "Livraison",
+    "Menu enfant et chaises hautes",
+    "Accessible en fauteuil roulant",
+    "Stationnement gratuit dans la rue"
+  ],
+  "paiements": ["Carte bancaire", "Sans contact"],
+  "notes": {
+    "google": { "note": "4,6", "sur": "5", "avis": "490" },
+    "facebook": { "texte": "100 % recommandé", "avis": "300" },
+    "tripadvisor": { "note": "4,2", "sur": "5", "avis": "66" }
+  },
+  "reseaux": {
+    "facebook": "https://www.facebook.com/p/O-conquistador-montmorency-100063699574687",
+    "facebookNom": "O conquistador montmorency",
+    "instagram": "https://www.instagram.com/o.conquistador95160mc/",
+    "instagramNom": "@o.conquistador95160mc"
+  },
+  "communesVoisines": ["Groslay", "Saint-Brice-sous-Forêt", "Sarcelles", "Deuil-la-Barre", "Montmagny", "Domont", "Ézanville"]
+}

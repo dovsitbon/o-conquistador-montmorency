@@ -1,0 +1,310 @@
+---
+import Base from '../layouts/Base.astro';
+import Frise from '../components/Frise.astro';
+import Plaque from '../components/Plaque.astro';
+import PhotoSlot from '../components/PhotoSlot.astro';
+import CarteCategorie from '../components/CarteCategorie.astro';
+import infos from '../data/infos.json';
+import avis from '../data/avis.json';
+import carte from '../data/carte.json';
+
+const apercu = carte.categories.filter((c) => ['viandes', 'poissons', 'accompagnements', 'desserts'].includes(c.id));
+const tel = `tel:${infos.telephoneLien}`;
+
+const faq = [
+  {
+    q: 'Faut-il réserver ?',
+    r: `Le soir, oui : la réservation est recommandée le vendredi et le samedi. Appelez le ${infos.telephone}.`,
+  },
+  {
+    q: 'Êtes-vous ouverts le soir ?',
+    r: 'Seulement le vendredi et le samedi, de 19h30 à 21h30. Du mardi au jeudi, le restaurant est ouvert le midi uniquement, de 11h30 à 14h00. Fermé le dimanche et le lundi.',
+  },
+  {
+    q: 'Où se garer ?',
+    r: 'Le stationnement est gratuit dans la rue, avenue de Domont à Montmorency.',
+  },
+  {
+    q: 'Les enfants sont-ils bienvenus ?',
+    r: 'Oui. Il y a un menu enfant et des chaises hautes, et certains plats peuvent être adaptés pour les tout-petits.',
+  },
+  {
+    q: 'Le restaurant est-il accessible en fauteuil roulant ?',
+    r: 'Oui, la salle est accessible en fauteuil roulant.',
+  },
+  {
+    q: 'Faites-vous traiteur et livraison ?',
+    r: `Oui, le restaurant propose un service traiteur et la livraison. Pour les modalités, appelez le ${infos.telephone}.`,
+  },
+  {
+    q: 'Quels moyens de paiement acceptez-vous ?',
+    r: 'La carte bancaire, y compris le paiement sans contact.',
+  },
+  {
+    q: 'Le restaurant ferme-t-il l’été ?',
+    r: 'Oui, pour les congés annuels. En 2024, il était fermé du 31 juillet au 2 septembre.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.r },
+  })),
+};
+---
+<Base
+  title="O Conquistador | Restaurant portugais à la braise à Montmorency"
+  description="Restaurant portugais à Montmorency : viandes premium et poissons à la braise, frites et flan maison, terrasse. Midi du mardi au samedi, soir vendredi et samedi."
+  jsonLd={[faqLd]}
+>
+  <!-- Ouverture : nom en italique + plaque de rue azulejo « 93 » -->
+  <section class="mx-auto grid max-w-[1320px] gap-10 px-4 pb-14 pt-10 sm:px-6 md:pt-14 lg:grid-cols-[1fr_400px] lg:gap-16 lg:px-10 lg:pb-20 lg:pt-20">
+    <div class="min-w-0">
+      <h1 class="text-cobalt">
+        <span class="block text-[clamp(3.2rem,14.5vw,6.5rem)] leading-[0.92] lg:text-[clamp(4rem,7.3vw,7.6rem)]">O<br />Conquistador</span>
+        <span class="mt-5 block font-sans text-[clamp(1.25rem,2.4vw,1.75rem)] font-semibold not-italic leading-snug tracking-normal text-encre [text-wrap:pretty]">
+          Cuisine portugaise à la braise, à Montmorency
+        </span>
+      </h1>
+      <p class="mt-6 max-w-[52ch] text-[1.15rem]">
+        Viandes premium et poissons grillés sur la braise, frites maison, haricots noirs, flan maison.
+        Une salle, un bar et une terrasse aménagée, au 93 avenue de Domont.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={tel} class="btn btn-plein">Réserver au {infos.telephone}</a>
+        <a href="/carte/" class="btn btn-ligne">Voir la carte</a>
+      </div>
+      <p class="mt-4 text-[0.98rem] text-encre/85">
+        Midi : du mardi au samedi. Soir : vendredi et samedi seulement.
+      </p>
+    </div>
+
+    <div class="min-w-0 lg:pt-2">
+      <Plaque />
+      <aside class="mt-5 border-l-[5px] border-braise bg-glacure px-4 py-3" aria-label="Congés annuels">
+        <p class="font-semibold">Congés d’été</p>
+        <p class="text-[0.98rem]">{infos.conges.texte} {infos.conges.rappel}</p>
+        <p class="mt-1 text-[0.98rem]">{infos.conges.datesAnneeEnCours.replace(' [À CONFIRMER]', '')} <span class="a-confirmer">[À CONFIRMER]</span></p>
+      </aside>
+    </div>
+  </section>
+
+  <Frise />
+
+  <!-- La braise -->
+  <section id="braise" class="bg-charbon text-fumee" aria-labelledby="braise-titre">
+    <div class="mx-auto max-w-[1320px] px-4 py-20 sm:px-6 lg:px-10 lg:py-28">
+      <h2 id="braise-titre" class="text-[clamp(3rem,8vw,6.5rem)] text-braise-vive">La braise</h2>
+      <div class="mt-10 max-w-[22ch] space-y-5 font-display text-[clamp(1.85rem,4.4vw,3.6rem)] font-bold italic leading-[1.12] sm:max-w-[24ch]">
+        <p class="braise-ligne">Ici, tout passe par la <span class="ember">braise</span>.</p>
+        <p class="braise-ligne">Les viandes premium y sont <span class="ember">saisies</span>, la cuisson tenue <span class="ember">juste</span>.</p>
+        <p class="braise-ligne">La <span class="ember">dorade</span> grillée, la <span class="ember">morue</span>.</p>
+        <p class="braise-ligne">Et à côté, du <span class="ember">fait maison</span>.</p>
+      </div>
+
+      <div class="mt-16 grid gap-10 lg:mt-24 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <PhotoSlot ton="braise" ratio="5 / 4" legende="La braise sous la grille, en gros plan, avec des viandes en cours de cuisson. Lumière du feu, sans flash." />
+        <div>
+          <dl class="divide-y divide-cendre/40 border-y border-cendre/40">
+            <div class="py-6">
+              <dt class="titre text-[2rem] text-braise-vive">Les viandes</dt>
+              <dd class="mt-2 max-w-[46ch] text-[1.08rem]">Des viandes premium, cuites à la braise. Il y en a plusieurs : on revient pour les goûter toutes.</dd>
+            </div>
+            <div class="py-6">
+              <dt class="titre text-[2rem] text-braise-vive">Les poissons</dt>
+              <dd class="mt-2 max-w-[46ch] text-[1.08rem]">La dorade grillée et la morue, deux classiques de la cuisine portugaise.</dd>
+            </div>
+            <div class="py-6">
+              <dt class="titre text-[2rem] text-braise-vive">Les accompagnements maison</dt>
+              <dd class="mt-2 max-w-[46ch] text-[1.08rem]">Frites maison, riz, haricots noirs, champignons. Les assiettes sont copieuses. En dessert, le flan maison.</dd>
+            </div>
+          </dl>
+          <figure class="mt-8">
+            <blockquote class="titre text-[1.7rem] leading-snug text-fumee">« Pour goûter l’ensemble des viandes, il faut revenir. »</blockquote>
+            <figcaption class="mt-2 text-cendre">Avis Google</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- La carte (extrait) -->
+  <section id="carte" class="mx-auto max-w-[1320px] px-4 py-20 sm:px-6 lg:px-10 lg:py-28" aria-labelledby="carte-titre">
+    <div class="flex flex-wrap items-end justify-between gap-6">
+      <div>
+        <h2 id="carte-titre" class="text-[clamp(2.8rem,7vw,5.5rem)] text-cobalt">La carte</h2>
+        <p class="mt-3 max-w-[50ch] text-[1.1rem]">Un extrait. Entrées, spécialités portugaises, menu enfant et vins portugais sont sur la carte complète.</p>
+      </div>
+      <a href="/carte/" class="btn btn-ligne">Toute la carte</a>
+    </div>
+    <div class="mt-12 grid gap-x-16 gap-y-14 md:grid-cols-2">
+      {apercu.map((c) => <CarteCategorie titre={c.titre} intro={c.intro} plats={c.plats} />)}
+    </div>
+  </section>
+
+  <Frise fine />
+
+  <!-- La maison -->
+  <section id="maison" class="bg-glacure" aria-labelledby="maison-titre">
+    <div class="mx-auto grid max-w-[1320px] gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.1fr] lg:gap-20 lg:px-10 lg:py-28">
+      <div>
+        <h2 id="maison-titre" class="text-[clamp(2.6rem,6vw,4.8rem)] text-cobalt">Une maison aux petits soins</h2>
+        <div class="mt-8 max-w-[54ch] space-y-4 text-[1.12rem]">
+          <p>Un accueil chaleureux et familial, un patron aux petits soins pour chaque table : c’est ce que les clients racontent après leur repas.</p>
+          <p>On mange en salle, au bar ou sur la terrasse aménagée quand il fait beau.</p>
+          <p>Les enfants sont les bienvenus : menu enfant, chaises hautes, et des plats adaptés pour les plus petits quand il le faut.</p>
+        </div>
+        <ul class="mt-10 grid max-w-[560px] grid-cols-1 border-t-2 border-cobalt sm:grid-cols-2">
+          {['Salle et bar', 'Terrasse aménagée', 'Menu enfant, chaises hautes', 'Accessible en fauteuil roulant', 'Traiteur et livraison', 'Parking gratuit dans la rue'].map((s) => (
+            <li class="flex min-h-[52px] items-center gap-3 border-b border-cobalt/25 py-2 pr-4 font-semibold">
+              <span class="h-3 w-3 flex-none rotate-45 bg-cobalt" aria-hidden="true"></span>{s}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="grid grid-cols-6 gap-4 self-start">
+        <PhotoSlot class="col-span-6" ton="chaux" ratio="16 / 10" legende="La terrasse aménagée, en fin de matinée, tables dressées, prise depuis l’entrée." />
+        <PhotoSlot class="col-span-6 sm:col-span-4 sm:col-start-3" ton="cobalt" ratio="4 / 3" legende="Le patron en salle, au service, de trois quarts (avec son accord)." />
+      </div>
+    </div>
+  </section>
+
+  <!-- Avis -->
+  <section id="avis" class="mx-auto max-w-[1320px] px-4 py-20 sm:px-6 lg:px-10 lg:py-28" aria-labelledby="avis-titre">
+    <h2 id="avis-titre" class="sr-only">Avis des clients</h2>
+    <div class="grid gap-14 lg:grid-cols-[380px_1fr] lg:gap-20">
+      <div>
+        <p class="titre pl-2 text-cobalt"><span class="block text-[clamp(7rem,18vw,12rem)] leading-[0.9]">4,6</span></p>
+        <p class="mt-4 text-[1.2rem] font-semibold">sur 5 sur Google, environ {infos.notes.google.avis} avis</p>
+        <ul class="mt-8 space-y-3 border-t-2 border-cobalt pt-5 text-[1.05rem]">
+          <li><strong>{infos.notes.facebook.texte}</strong> sur Facebook, environ {infos.notes.facebook.avis} avis</li>
+          <li><strong>{infos.notes.tripadvisor.note} sur 5</strong> sur TripAdvisor, {infos.notes.tripadvisor.avis} avis</li>
+        </ul>
+      </div>
+      <div class="grid gap-x-12 md:grid-cols-2">
+        {avis.map((a, i) => (
+          <figure class:list={['border-t-2 border-cobalt py-7', { 'md:col-span-2': i === 0 }]}>
+            <blockquote class:list={['titre !font-bold leading-[1.22] text-encre', i === 0 ? 'text-[clamp(1.7rem,3.2vw,2.6rem)]' : 'text-[1.55rem]']}>
+              « {a.texte} »
+            </blockquote>
+            <figcaption class="mt-3 flex items-center gap-2 text-[0.98rem] font-semibold text-cobalt">
+              <span class="h-5 w-5 flex-none border border-cobalt bg-[url(/azulejo.svg)] bg-[length:40px] bg-center" aria-hidden="true"></span>{a.source}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Groupes & traiteur -->
+  <section id="groupes" class="bg-cobalt text-glacure" aria-labelledby="groupes-titre">
+    <div class="mx-auto grid max-w-[1320px] gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_1.2fr] lg:gap-20 lg:px-10 lg:py-24">
+      <div>
+        <h2 id="groupes-titre" class="text-[clamp(2.6rem,6vw,4.8rem)]">Groupes & traiteur</h2>
+        <p class="mt-6 max-w-[44ch] text-[1.12rem] text-[#E4EAFA]">Une grande table à réserver, un plat à emporter pour une fête : tout se règle par téléphone.</p>
+        <a href={tel} class="btn mt-8 border-glacure bg-glacure text-cobalt hover:bg-chaux">Appeler le {infos.telephone}</a>
+      </div>
+      <ul class="border-t border-[#C9D4F2]/50">
+        <li class="border-b border-[#C9D4F2]/50 py-6">
+          <p class="titre text-[2rem]">Anniversaires</p>
+          <p class="mt-1 max-w-[50ch] text-[#E4EAFA]">Réservez une table pour le groupe, en salle ou en terrasse. Nombre de couverts maximum <span class="a-confirmer">[À CONFIRMER]</span></p>
+        </li>
+        <li class="border-b border-[#C9D4F2]/50 py-6">
+          <p class="titre text-[2rem]">Repas de famille</p>
+          <p class="mt-1 max-w-[50ch] text-[#E4EAFA]">Plats copieux, menu enfant et chaises hautes pour les plus jeunes.</p>
+        </li>
+        <li class="border-b border-[#C9D4F2]/50 py-6">
+          <p class="titre text-[2rem]">Commandes traiteur</p>
+          <p class="mt-1 max-w-[50ch] text-[#E4EAFA]">Les plats du restaurant à emporter, et la livraison. Délais et quantités <span class="a-confirmer">[À CONFIRMER]</span></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Infos pratiques -->
+  <section id="infos" class="mx-auto max-w-[1320px] px-4 py-20 sm:px-6 lg:px-10 lg:py-28" aria-labelledby="infos-titre">
+    <h2 id="infos-titre" class="text-[clamp(2.6rem,6vw,4.8rem)] text-cobalt">Infos pratiques</h2>
+    <div class="mt-12 grid gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-20">
+      <div>
+        <h3 class="text-[1.9rem] text-cobalt">Horaires</h3>
+        <p data-statut class="mt-3 text-[1.1rem]"><span class="pastille" aria-hidden="true"></span><span>Statut d’ouverture en direct</span></p>
+        <table class="mt-5 w-full border-collapse text-left text-[1.05rem]">
+          <caption class="sr-only">Horaires d’ouverture d’O Conquistador</caption>
+          <thead>
+            <tr class="border-b-2 border-cobalt">
+              <th scope="col" class="py-2 pr-3 font-semibold">Jour</th>
+              <th scope="col" class="py-2 pr-3 font-semibold">Midi</th>
+              <th scope="col" class="py-2 font-semibold">Soir</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[...infos.horaires.slice(1), infos.horaires[0]].map((j) => (
+              <tr class="border-b border-cobalt/20" data-dow={j.dow}>
+                <th scope="row" class="py-3 pr-3 font-semibold">{j.jour}</th>
+                <td class="whitespace-nowrap py-3 pr-3 tabular-nums">{j.services[0] ? `${j.services[0][0].replace(':', 'h')} à ${j.services[0][1].replace(':', 'h')}` : 'fermé'}</td>
+                <td class="whitespace-nowrap py-3 tabular-nums">{j.services[1] ? `${j.services[1][0].replace(':', 'h')} à ${j.services[1][1].replace(':', 'h')}` : j.services.length ? 'pas de service' : 'fermé'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <p class="mt-5 border-l-[5px] border-braise bg-glacure px-4 py-3 text-[1.05rem]">
+          <strong>Le soir, seulement le vendredi et le samedi.</strong> Réservation recommandée : <span class="whitespace-nowrap">{infos.telephone}</span>.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-[1.9rem] text-cobalt">Venir</h3>
+        <address class="mt-3 text-[1.2rem] not-italic">
+          <strong>{infos.nom}</strong><br />
+          {infos.adresse.rue}<br />
+          {infos.adresse.codePostal} {infos.adresse.ville}
+        </address>
+        <p class="mt-2"><a href={tel} class="lien inline-flex min-h-[44px] items-center text-[1.2rem] font-semibold text-cobalt">{infos.telephone}</a></p>
+        <ul class="mt-4 space-y-2 text-[1.05rem]">
+          <li><strong>Stationnement</strong> gratuit dans la rue.</li>
+          <li><strong>Paiement</strong> par carte bancaire, sans contact accepté.</li>
+          <li><strong>Accès</strong> en fauteuil roulant.</li>
+        </ul>
+        <p class="mt-4 max-w-[52ch] text-[1.02rem] text-encre/85">
+          Depuis Groslay, Deuil-la-Barre, Montmagny, Saint-Brice-sous-Forêt, Sarcelles, Domont ou Ézanville :
+          direction le 93 avenue de Domont, à Montmorency.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href={infos.itineraire} class="btn btn-plein" target="_blank" rel="noopener">Itinéraire Google Maps</a>
+        </div>
+        <div class="relative mt-6 aspect-[16/11] w-full overflow-hidden border-[3px] border-cobalt bg-glacure">
+          <button type="button" data-carte-google={infos.carteIframe} class="group absolute inset-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-3 bg-[url(/azulejo.svg)] bg-[length:96px] p-6">
+            <span class="border-[3px] border-cobalt bg-glacure px-5 py-3 text-center font-semibold text-cobalt group-hover:bg-cobalt group-hover:text-glacure">
+              Afficher le plan
+              <span class="block text-[0.85rem] font-normal">Charge Google Maps (cookies Google)</span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 lg:mt-28">
+      <h3 class="text-[clamp(2rem,4vw,3rem)] text-cobalt">Questions fréquentes</h3>
+      <div class="mt-6 grid border-t-2 border-cobalt md:grid-cols-2 md:gap-x-12">
+        {faq.map((f) => (
+          <details class="faq border-b border-cobalt/25">
+            <summary class="flex min-h-[56px] cursor-pointer list-none items-center justify-between gap-4 py-3 text-[1.12rem] font-semibold">
+              {f.q}<span class="plus titre text-2xl text-cobalt" aria-hidden="true">+</span>
+            </summary>
+            <p class="max-w-[56ch] pb-5 text-[1.05rem]">{f.r}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq[open] .plus { transform: rotate(45deg); }
+  .plus { transition: transform 0.2s; display: inline-block; }
+</style>

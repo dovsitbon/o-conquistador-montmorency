@@ -1,0 +1,17 @@
+---
+// Emplacement photo : à remplacer par <Image> d'astro:assets (voir PHOTOS_A_PRENDRE.md)
+interface Props { legende: string; ton?: 'cobalt' | 'braise' | 'chaux'; class?: string; ratio?: string }
+const { legende, ton = 'cobalt', class: cls = '', ratio = '4 / 3' } = Astro.props;
+const tons = {
+  cobalt: 'bg-cobalt text-glacure',
+  braise: 'photo-braise text-fumee',
+  chaux: 'bg-[#E4E7EE] text-encre',
+};
+---
+<figure class:list={['relative m-0 flex flex-col justify-end overflow-hidden p-5', tons[ton], cls]} style={`aspect-ratio:${ratio}`}>
+  <span class="pointer-events-none absolute right-0 top-0 h-16 w-16 bg-[url(/azulejo.svg)] bg-[length:64px] opacity-90" aria-hidden="true"></span>
+  <figcaption class:list={['max-w-[34ch] text-[0.95rem] leading-snug', { 'bg-charbon/85 p-3': ton === 'braise' }]}>
+    <span class="mb-1 block font-semibold">Photo à venir</span>
+    {legende}
+  </figcaption>
+</figure>
